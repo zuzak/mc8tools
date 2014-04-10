@@ -217,3 +217,10 @@ font-weight: bold;
    color:gray;
    margin-top:1em;
  }
+ .flash { /* Gordon's alive! */
+   background-color: #f6f6f6;
+   border:1px solid #a7d7f9;
+   padding:1em;
+   border-radius:3px;
+   font-weight:bold;
+ }

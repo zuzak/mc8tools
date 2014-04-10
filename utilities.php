@@ -2,18 +2,16 @@
 /**
  * Utility function to sign a request
  *
- * Note this doesn't properly handle the case where a parameter is set both in 
+ * Note this doesn't properly handle the case where a parameter is set both in
  * the query string in $url and in $params, or non-scalar values in $params.
  *
  * @param string $method Generally "GET" or "POST"
  * @param string $url URL string
- * @param array $params Extra parameters for the Authorization header or post 
+ * @param array $params Extra parameters for the Authorization header or post
  * 	data (if application/x-www-form-urlencoded).
  * @return string Signature
  */
-function sign_request( $method, $url, $params = array() ) {
-	global $consumerSecret, $gTokenSecret;
-
+function sign_request( $method, $url, $consumerSecret, $tokenSecret = '', $params = array() ) {
 	$parts = parse_url( $url );
 
 	// We need to normalize the endpoint URL
@@ -22,7 +20,7 @@ function sign_request( $method, $url, $params = array() ) {
 	$port = isset( $parts['port'] ) ? $parts['port'] : ( $scheme == 'https' ? '443' : '80' );
 	$path = isset( $parts['path'] ) ? $parts['path'] : '';
 	if ( ( $scheme == 'https' && $port != '443' ) ||
-		( $scheme == 'http' && $port != '80' ) 
+		( $scheme == 'http' && $port != '80' )
 	) {
 		// Only include the port if it's not the default
 		$host = "$host:$port";
@@ -48,7 +46,7 @@ function sign_request( $method, $url, $params = array() ) {
 	$toSign = rawurlencode( strtoupper( $method ) ) . '&' .
 		rawurlencode( "$scheme://$host$path" ) . '&' .
 		rawurlencode( join( '&', $pairs ) );
-	$key = rawurlencode( $consumerSecret ) . '&' . rawurlencode( $gTokenSecret );
+	$key = rawurlencode( $consumerSecret ) . '&' . rawurlencode( $tokenSecret );
 	return base64_encode( hash_hmac( 'sha1', $toSign, $key, true ) );
 }
 
