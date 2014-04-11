@@ -69,7 +69,7 @@ function getDesc(name) {
       updatePreview();
       updateWikitext();
     } else {
-      $('.desc').html('[Nothing found.]');
+      $('.desc').html('[The Wikidata entry for ' + name + ' needs a description! <a href="https://www.wikidata.org/wiki/'+Object.keys(data)[0]+'">Add one!</a>]');
     }
     $('input').prop('checked', false);
     for (project in entry.sites) {
@@ -87,7 +87,7 @@ function getDesc(name) {
     }
     updateWikitext();
   }).error(function() {
-    $('.desc').text('');
+    $('.desc').text('[Nothing found.]');
   })
 }
 
