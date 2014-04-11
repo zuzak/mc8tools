@@ -1,3 +1,10 @@
+/**
+ * vector.css
+ *
+ * Generic styles used to look vaguely reminiscent of the Vector skin,
+ * the default available in MediaWiki 1.17 and greater.
+ *
+ */
 html {
   font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
   color: #252525;
@@ -112,157 +119,74 @@ font-weight: bold;
   display:block;
   margin-bottom:0;
 }
-.image {
-   max-width:100px;
-   max-height:100px;
-   display:inline-block;
-   z-index:-1;
-   top:5;
-   float:right;
- }
- .desc{
-   width:400px;
-   color:gray;
-   font-size:1em;
-   text-align:right;
-   margin-bottom:2em;
-   margin-top:0;
-   display:inline-block;
-   height:1em;
- }
- .template label {
-   width: 100px;
-   font-size:1.4em;
-   display:table;
-   text-align:right;
-   vertical-align:middle;
-   float:left;
-   clear:left;
-   padding-top:3px;
- }
- .template input {
-   font-size:1.2em;
-   width: 300px;
-   height:1.2em;
-   float:left;
-   clear:right;
-   border:1px solid #ccc;
-   padding:0.2em;
- }
- input:focus {
-   border-color: gray;
- }
- .template input, .template label {
-   line-height:1em;
-   margin:0.2em;
- }
- form {
-   width:450px;
-   margin:auto;
-   display:block;
-   margin-bottom:2em;
-   clear:both;
- }
- .preview {
-   clear:both;
-   margin-top:4em;
-   text-align:center;
-   font-size:1em;
-   min-height:1em;
- }
+input:focus {
+  border-color: gray;
+}
+.template input, .template label {
+ line-height:1em;
+ margin:0.2em;
+}
 
- li.wikibooks {
-   list-style-image: url('icons/b.png');
- }
- li.wikipedia {
-   list-style-image: url('icons/w.png');
- }
- li.wikidata {
-   list-style-image: url('icons/d.png');
- }
- li.incubator {
-   list-style-image: url('icons/incubator.png');
- }
- li.meta {
-   list-style-image: url('icons/m.png');
- }
- li.wikiquote {
-   list-style-image: url('icons/q.png');
- }
- li.wikisource {
-   list-style-image: url('icons/s.png');
- }
- li.wikiversity {
-   list-style-image: url('icons/v.png');
- }
- li.wiktionary {
-   list-style-image: url('icons/wikt.png');
- }
- li.commons {
-   list-style-image: url('icons/commons.png');
- }
- li.wikivoyage {
-   list-style-image: url('icons/voyage.png');
- }
- .projects ul {
-   width:100px;
-   float:left;
- }
-.projects ul li input {
-   float:right;
- }
- p {
-   clear:both;
- }
- .warning {
-   margin-top:2em;
-   padding-top:2em;
-   text-align:center;
-   border-top:1px solid #A7D7F9;
- }
- .hatnote {
-   float:right;
-   font-size:80%;
-   text-transform:uppercase;
-   color:gray;
-   margin-top:1em;
-   margin-left:1em;
- }
- .flash, pre { /* Gordon's alive! */
-   background-color: #f6f6f6;
-   border:1px solid #a7d7f9;
-   padding:1em;
-   border-radius:3px;
-   clear:both;
- }
- .flash {
-   font-weight:bold;
- }
- .poweredby:hover {
-   background-color:yellow;
- }
- .editlink {
-   float:right;
-   font-weight:bold;
- }
- .force {
-   float:left;
- }
- .force, .editlink, .autocomplete {
-   margin:0;
-   margin-top:-1em;;
-   display:block;
-   padding:0;
-   color:#a7d7f9;
-   font-size:80%;
- }
- .autocomplete {
-   margin:0;
-   padding:0;
-   text-indent:100px;
-   width:20px;
- }
- pre.wikitext {
-   white-space:pre-wrap;
-   overflow:hidden;
- }
+li.wikibooks {
+  list-style-image: url('icons/b.png');
+}
+li.wikipedia {
+  list-style-image: url('icons/w.png');
+}
+li.wikidata {
+  list-style-image: url('icons/d.png');
+}
+li.incubator {
+  list-style-image: url('icons/incubator.png');
+}
+li.meta {
+  list-style-image: url('icons/m.png');
+}
+li.wikiquote {
+  list-style-image: url('icons/q.png');
+}
+li.wikisource {
+  list-style-image: url('icons/s.png');
+}
+li.wikiversity {
+  list-style-image: url('icons/v.png');
+}
+li.wiktionary {
+  list-style-image: url('icons/wikt.png');
+}
+li.commons {
+  list-style-image: url('icons/commons.png');
+}
+li.wikivoyage {
+  list-style-image: url('icons/voyage.png');
+}
+p {
+  clear:both;
+}
+.warning {
+  margin-top:2em;
+  padding-top:2em;
+  text-align:center;
+  border-top:1px solid #A7D7F9;
+}
+.hatnote {
+  float:right;
+  font-size:80%;
+  text-transform:uppercase;
+  color:gray;
+  margin-top:1em;
+  margin-left:1em;
+}
+.flash, pre { /* Gordon's alive! */
+  background-color: #f6f6f6;
+  border:1px solid #a7d7f9;
+  padding:1em;
+  border-radius:3px;
+  clear:both;
+}
+.flash {
+  font-weight:bold;
+}
+.poweredby:hover {
+  background-color:yellow;
+}
