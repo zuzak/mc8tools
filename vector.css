@@ -109,17 +109,26 @@ font-weight: bold;
   width:400px;
   font-size:140%;
   padding:0.5em;
-  margin:auto;
   display:block;
+  margin-bottom:0;
 }
-
+.image {
+   max-width:100px;
+   max-height:200px;
+   position:inline-block;
+   z-index:-1;
+   top:5;
+   float:right;
+ }
  .desc{
    width:400px;
-   margin:auto;
    color:gray;
-   font-size:80%;
+   font-size:1em;
    text-align:right;
    margin-bottom:2em;
+   margin-top:0;
+   display:inline-block;
+   height:1em;
  }
  .template label {
    width: 100px;
@@ -158,6 +167,8 @@ font-weight: bold;
    clear:both;
    margin-top:4em;
    text-align:center;
+   font-size:1em;
+   min-height:1em;
  }
 
  li.wikibooks {
@@ -217,10 +228,25 @@ font-weight: bold;
    color:gray;
    margin-top:1em;
  }
- .flash { /* Gordon's alive! */
+ .flash, pre { /* Gordon's alive! */
    background-color: #f6f6f6;
    border:1px solid #a7d7f9;
    padding:1em;
    border-radius:3px;
+   clear:both;
+ }
+ .flash {
    font-weight:bold;
+ }
+ .poweredby {
+   text-decoration:line-through;
+ }
+ .editlink {
+   float:right;
+   margin:0;
+   margin-top:-1em;;
+   display:block;
+   padding:0;
+   color:#a7d7f9;
+   font-size:80%;
  }
