@@ -121,7 +121,7 @@ function updateWikitext() {
 	}
 	if($('.caption').val()) {
    		var img = $('.img').val();
-    	wikitext += "\n|caption=" + img.substr(img.indexOf(':')+1);
+    	wikitext += "\n|caption=" + $('.caption').val();
 	}
 	var sp = false;
 	for (var key in projects) {
