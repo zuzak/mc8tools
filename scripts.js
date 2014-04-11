@@ -40,7 +40,7 @@ $(document).ready(function() {
 		$('.img').slideDown();
 	});
 	$('.force').click(function(){updateWikitext()});
-	$('.desc, .preview, pre').click(function(){
+	$('.desc, .preview').click(function(){
 		updatePreview();
 		updateWikitext();
 	});
