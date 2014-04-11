@@ -82,6 +82,7 @@ function getDesc(name) {
 			$('.blurb').val('');
 		}
     	$('input').prop('checked', false);
+		clearData();
 		entry.sites["wikidata"] = key; // we want a wikidata link, but it will never be returned by the api
 		for (project in entry.sites) {
 			if(projects[project]) {
@@ -125,10 +126,7 @@ function updateWikitext() {
 		var img = $('.img').val();
 		wikitext += "\n|image=" + img.substr(img.indexOf(':')+1);
 	}
-	if($('.caption').val()) {
-   		var img = $('.img').val();
-    	wikitext += "\n|caption=" + $('.caption').val();
-	}
+	wikitext += "\n|imagecaption=" + $('.caption').val(); // always show caption even if empty
 	var sp = false;
 	for (var key in projects) {
 		if($('.' + projects[key] + ' input').is(':checked')) {
@@ -151,4 +149,10 @@ function updateWikitext() {
 
 function changeImage() {
 	$('.image').slideUp().attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val())
+}
+
+function clearData() {
+  for (var key in projects) {
+	$('.' + projects[key] + ' input').attr('data-article','');
+  }
 }
