@@ -19,9 +19,19 @@ var projects = {
 }
 $(document).ready(function() {
   updateWikitext();
-  $('.name').on('input',function() {
+  /*$('.name').on('input',function() {
     getDesc($('.name').val());
     updatePreview();
+  })*/
+  $('.name').keyup(function(e) {
+    if(e.keyCode==13) {
+      getDesc($('.name').val());
+      updatePreview();
+    } else {
+      $('.desc').text('<press return>');
+      updatePreview();
+      updateWikitext();
+    }
   })
   $('.blurb').on('input', updatePreview)
   $('input').on('input', function(){updateWikitext()});
@@ -33,25 +43,37 @@ $(document).ready(function() {
     $('.img').slideDown();
   })
   $('.force').click(function(){updateWikitext()});
+  $('.desc, .preview, pre').click(function(){
+    updatePreview();
+    updateWikitext();
+  })
 })
 
 function getDesc(name) {
   $('.desc').text('Working…');
-  $('.editlink').attr('href',"https://en.wikinews.org/w/index.php?action=edit&title=Category:" + encodeURIComponent(name));
+  var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
+  url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
+  $('.editlink').attr('href', url);
   $.getJSON('wikidata.php?name=' + encodeURIComponent(name), function (data) {
     var entry = data[Object.keys(data)[0]]; // use the first
+    $('.wikidatalink').attr('href','https://www.wikidata.org/wiki/'+Object.keys(data)[0]);
+    $('.wikidatalink').text(Object.keys(data)[0]);
     if(!entry) {
       return;
     }
     if(entry.desc) {
       $('.desc').text(entry.desc)
+      $('.blurb').val(indefiniteArticle($('.desc').text()) + ' '+ $('.desc').text());
+      updatePreview();
+      updateWikitext();
     } else {
       $('.desc').html('&nbsp;');
     }
     $('input').prop('checked', false);
-    for(var i = 0; i < entry.sites.length; i++ ) {
-      if(projects[entry.sites[i]]) {
-        $('.' + projects[entry.sites[i]] + ' input').prop('checked', true);
+    for (project in entry.sites) {
+      if(projects[project]) {
+        $('.' + projects[project] + ' input').prop('checked', 'true');
+        $('.' + projects[project] + ' input').attr('data-article', entry.sites[project]);
       }
     }
     if(entry.image) {
@@ -96,8 +118,13 @@ function updateWikitext() {
   var sp = false;
   for (var key in projects) {
     if($('.' + projects[key] + ' input').is(':checked')) {
-      wikitext += "\n|" + projects[key] + "={{PAGENAME}}"
-      sp = true;
+      var article = $('.'+projects[key]+' input').attr('data-article');
+      if(typeof article == 'undefined') {
+        article = '{{PAGENAME}}';
+      } else {
+        article = article.replace($('.name').val(),'{{PAGENAME}}');
+      }
+      wikitext += '\n|' + projects[key] + '=' + article;
     }
   }
   if (sp) {

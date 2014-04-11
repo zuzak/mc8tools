@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/json');
+//  header('Content-type: application/json');
 
 $wikidata = 'https://www.wikidata.org/w/api.php?';
 
@@ -44,7 +44,7 @@ foreach( $data as $k=>$v) {
   }
   $sites = array();
   foreach( $current->sitelinks as $site ) {
-    array_push($sites, $site->site);
+    $sites[$site->site] = $site->title;
   }
   $output['sites'] = $sites;
 

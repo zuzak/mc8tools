@@ -4,13 +4,15 @@
   <title>Topic Cat II</title>
   <link href="vector.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="indefinite-article.js"></script>
   <script src="scripts.js"></script>
   <meta charset="utf-8">
 </head>
 <body>
   <noscript class="hatnote">You'll need JavaScript.</noscript>
+  <a class="hatnote wikidatalink">Powered by Wikidata</a>
   <h1>Topic cat tool</h1>
-  <!-- 
+  <!--
   <p>
     You are successfully authenticated as <strong>User</strong> on
     <strong>test.wikipedia.org</strong>.
@@ -25,8 +27,7 @@
   </p>
   <img class="image"/>
   <input type="text" class="name textbox center" placeholder="Gyles Brandreth">
-  <p class="desc">
-  </p>
+  <p class="desc" href="#"></p>
   <p>
     Now complete the template:
   </p>

@@ -114,7 +114,7 @@ font-weight: bold;
 }
 .image {
    max-width:100px;
-   max-height:200px;
+   max-height:100px;
    position:inline-block;
    z-index:-1;
    top:5;
@@ -227,6 +227,7 @@ font-weight: bold;
    text-transform:uppercase;
    color:gray;
    margin-top:1em;
+   margin-left:1em;
  }
  .flash, pre { /* Gordon's alive! */
    background-color: #f6f6f6;
@@ -247,11 +248,17 @@ font-weight: bold;
  .force {
    float:left;
  }
- .force, .editlink {
+ .force, .editlink, .autocomplete {
    margin:0;
    margin-top:-1em;;
    display:block;
    padding:0;
    color:#a7d7f9;
    font-size:80%;
+ }
+ .autocomplete {
+   margin:0;
+   padding:0;
+   text-indent:100px;
+   width:20px;
  }
