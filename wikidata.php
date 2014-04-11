@@ -62,14 +62,14 @@ echo json_encode( $out );
 
 function err( $code, $str ) {
 	switch ( $code ) {
-	case 400:
-		header( 'HTTP/1.1 400 Bad Request' );
-		break;
-	case 404:
-	  	header( 'HTTP/1.1 404 Not Found' );
-		break;
-	case default:
-	  	header( 'HTTP/1.1 500 Internal Server Error' );
+		case 400:
+			header( 'HTTP/1.1 400 Bad Request' );
+			break;
+		case 404:
+			header( 'HTTP/1.1 404 Not Found' );
+			break;
+		default:
+			header( 'HTTP/1.1 500 Internal Server Error' );
 	}
 	die( json_encode( array( 'error' => $str ) ) );
 }

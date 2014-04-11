@@ -31,7 +31,7 @@ $(document).ready(function() {
 		updateWikitext();
 	});
   	$('input').on('change', function() {
-		updateWikitext()}
+		updateWikitext();
 	});
 	$('.img').on('input', function() {
 		$('.image').hide().attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val()).show();
