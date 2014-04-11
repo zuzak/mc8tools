@@ -126,6 +126,7 @@ function updateWikitext() {
 	var sp = false;
 	for (var key in projects) {
 		if($('.' + projects[key] + ' input').is(':checked')) {
+			sp = true;
 			var article = $('.'+projects[key]+' input').attr('data-article');
       		if(typeof article == 'undefined') {
 				article = '{{PAGENAME}}';
