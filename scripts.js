@@ -2,7 +2,7 @@
  * ISC license
  */
 
-var projects = {
+var projects = { // list of internal names mapped to projects
   "enwikibooks": "wikibooks",
   "commonswiki": "commons",
   "enwiki": "wikipedia",
@@ -16,7 +16,7 @@ var projects = {
 $(document).ready(function() {
 	updateWikitext();
 	$('.name').keyup(function(e) {
-		if(e.keyCode==13) {
+		if(e.keyCode==13) { // the enter key
 			getDesc($('.name').val());
 			updatePreview();
 		} else {
@@ -34,10 +34,10 @@ $(document).ready(function() {
 		updateWikitext();
 	});
 	$('.img').on('input', function() {
-		$('.image').hide().attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val()).show();
+	  changeImage();
 	})
-	$('.img').on('load', function() {
-		$('.img').slideDown();
+	$('.image').on('load', function() {
+		$('.image').slideDown();
 	});
 	$('.force').click(function(){updateWikitext()});
 	$('.desc, .preview').click(function(){
@@ -57,9 +57,10 @@ function getDesc(name) {
 	$('.editlink').attr('href', url);
 
 	$.getJSON('wikidata.php?name=' + encodeURIComponent(name), function (data) {
-		var entry = data[Object.keys(data)[0]]; // use the first
+		var key = Object.keys(data)[0]; // use the first
+		var entry = data[key];
 		$('.wikidatalink').attr('href','https://www.wikidata.org/wiki/'+Object.keys(data)[0]);
-		$('.wikidatalink').text(Object.keys(data)[0]);
+		$('.wikidatalink').text(key);
 		if(!entry) {
 			return;
 		}
@@ -73,6 +74,7 @@ function getDesc(name) {
 			$('.blurb').val('');
 		}
     	$('input').prop('checked', false);
+		entry.sites["wikidata"] = key; // we want a wikidata link, but it will never be returned by the api
 		for (project in entry.sites) {
 			if(projects[project]) {
 				$('.' + projects[project] + ' input').prop('checked', 'true');
@@ -81,14 +83,16 @@ function getDesc(name) {
 		}
 		if(entry.image) {
 			$('.img').val(entry.image);
-			$('.image').attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val()).show();
+			changeImage();
 		} else {
 			$('.img').val('');
+			changeImage();
 			$('.image').slideUp();
 		}
 		updateWikitext();
 	}).error(function() {
 		$('.desc').text('[Nothing found.]');
+		$('.wikidatalink').text('');
 	})
 }
 
@@ -134,4 +138,8 @@ function updateWikitext() {
 	}
 	wikitext += "\n}}";
 	$('.wikitext').text(wikitext);
+}
+
+function changeImage() {
+	$('.image').slideUp().attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val())
 }
