@@ -70,6 +70,7 @@ function getDesc(name) {
 			updateWikitext();
 		} else {
       		$('.desc').html('[The Wikidata entry for ' + name + ' <a href="https://www.wikidata.org/wiki/'+Object.keys(data)[0]+'">needs a description</a>]');
+			$('.blurb').val('');
 		}
     	$('input').prop('checked', false);
 		for (project in entry.sites) {
