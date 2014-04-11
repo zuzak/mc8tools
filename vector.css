@@ -243,6 +243,7 @@ font-weight: bold;
  }
  .editlink {
    float:right;
+   font-weight:bold;
  }
  .force {
    float:left;
