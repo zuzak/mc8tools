@@ -238,8 +238,8 @@ font-weight: bold;
  .flash {
    font-weight:bold;
  }
- .poweredby {
-   text-decoration:line-through;
+ .poweredby:hover {
+   background-color:yellow;
  }
  .editlink {
    float:right;
