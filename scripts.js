@@ -53,6 +53,8 @@ function getDesc(name) {
   $('.desc').text('Working…');
   var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
   url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
+  url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])"
+  url += "&editintro=User:Microchip08/topiccat";
   $('.editlink').attr('href', url);
   $.getJSON('wikidata.php?name=' + encodeURIComponent(name), function (data) {
     var entry = data[Object.keys(data)[0]]; // use the first
