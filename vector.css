@@ -262,3 +262,7 @@ font-weight: bold;
    text-indent:100px;
    width:20px;
  }
+ pre.wikitext {
+   white-space:pre-wrap;
+   overflow:hidden;
+ }

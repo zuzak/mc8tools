@@ -67,7 +67,7 @@ function getDesc(name) {
       updatePreview();
       updateWikitext();
     } else {
-      $('.desc').html('&nbsp;');
+      $('.desc').html('[Nothing found.]');
     }
     $('input').prop('checked', false);
     for (project in entry.sites) {
@@ -90,7 +90,6 @@ function getDesc(name) {
 }
 
 function updatePreview() {
-  console.log("X");
   var blurb = $('.blurb').val();
   var name = $('.name').val();
   if (blurb && name) {
