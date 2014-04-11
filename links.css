@@ -1,0 +1,61 @@
+/**
+ * From https://en.wikinews.org/wiki/MediaWiki:Gadget-underlinePedia.css
+ * This file is licensed under https://creativecommons.org/licenses/by/2.5/
+ */
+a[href*="meta.wikimedia.org/w"] {
+    border-bottom: 1px dotted #999;
+	color: black;
+}
+ 
+a[href*="commons.wikimedia.org/w"] {
+        border-bottom: 1px dotted #999;
+	color: #800000;
+}
+ 
+a[href*=".wikipedia.org/w"] {
+	color: green;
+}
+ 
+a[href*=".wiktionary.org/w"] {
+	color: #9400D3;
+}
+ 
+a[href*=".wikiquote.org/w"] {
+	color: #FF00FF;
+}
+ 
+a[href*=".wikisource.org/w"] {
+	color: #00008B;
+}
+ 
+a[href*=".wikibooks.org/w"] {
+	color: #8B0000;
+}
+ 
+a[href*=".wikiversity.org/w"] {
+	color: #FF8C00;
+}
+ 
+a[href*="species.wikimedia.org/w"] {
+        border-bottom: 1px dotted #999;
+	color: #F08080;
+}
+ 
+a[href*="incubator.wikimedia.org/w"] {
+        border-bottom: 1px dotted #999;
+	color: red;
+}
+ 
+a[href*="www.mediawiki.org/w"] {
+        border-bottom: 1px dotted #999;
+	color: orange;
+}
+a[href*="*.wikivoyage.org/w"] {
+        border-bottom: 1px dotted #999; 
+	color: #E4D00A; /* "citrine" (yellowy-brown) */
+}
+a[href*="www.wikidata.org/w"] {
+        border-bottom: 1px dotted #999;
+	color: #E0B0FF; /* "mauve" (light purple) */
+}
+

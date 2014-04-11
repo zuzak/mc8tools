@@ -13,6 +13,16 @@ var projects = { // list of internal names mapped to projects
   "enwikivoyage": "wikivoyage",
   "wikidata": "wikidata" // placeholder
 };
+var urls = {
+  'wikibooks': 'https://en.wikibooks.org/wiki/',
+  'commons': 'https://commons.wikimedia.org/wiki/',
+  'wikipedia': 'https://en.wikipedia.org/wiki/',
+  'wikiquote': 'https://en.wikiquote.org/wiki/',
+  'wikisource': 'https://en.wikisource.org/wiki/',
+  'wikiversity': 'https://en.wikiversity.org/wiki/',
+  'wikivoyage': 'https://en.wikivoyage.org/wiki/',
+  'wikidata': 'https://www.wikidata.org/wiki/'
+}
 $(document).ready(function() {
   	if (window.location.hash) {
 		var nam = window.location.hash.replace(/_/g,' ').substring(1);
@@ -133,18 +143,19 @@ function updateWikitext() {
 			sp = true;
 			var article = $('.'+projects[key]+' input').attr('data-article');
       		if(typeof article == 'undefined') {
-				article = '{{PAGENAME}}';
+				var art = '{{PAGENAME}}';
+				article = $('.name').val();
 			} else {
-				article = article.replace($('.name').val(),'{{PAGENAME}}');
+				var art = article.replace($('.name').val(),'{{PAGENAME}}');
 			}
-			wikitext += '\n|' + projects[key] + '=' + article;
+			wikitext += '\n|' + projects[key] + '=' + '<a href="' + urls[projects[key]] + article + '">' + art + '</a>';
 		}
 	}
 	if (sp) {
 		wikitext += "\n|sisterprojects=yes";
 	}
 	wikitext += "\n}}";
-	$('.wikitext').text(wikitext);
+	$('.wikitext').html(wikitext);
 }
 
 function changeImage() {
@@ -153,6 +164,6 @@ function changeImage() {
 
 function clearData() {
   for (var key in projects) {
-	$('.' + projects[key] + ' input').attr('data-article','');
+	$('.' + projects[key] + ' input').removeAttr('data-article');
   }
 }
