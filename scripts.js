@@ -12,7 +12,7 @@ var projects = {
   "enwikiversity": "wikiversity",
   "enwikivoyage": "wikivoyage",
   "wikidata": "wikidata" // placeholder
-}
+};
 $(document).ready(function() {
 	updateWikitext();
 	$('.name').keyup(function(e) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
 			updatePreview();
 			updateWikitext();
 		}
-	})
+	});
 
 	$('.blurb').on('input', updatePreview);
 	$('input').on('input', function() {
@@ -38,20 +38,20 @@ $(document).ready(function() {
 	})
 	$('.img').on('load', function() {
 		$('.img').slideDown();
-	})
+	});
 	$('.force').click(function(){updateWikitext()});
 	$('.desc, .preview, pre').click(function(){
 		updatePreview();
 		updateWikitext();
-	})
-})
+	});
+});
 
 function getDesc(name) {
 	$('.desc').text('Working…');
 
 	var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
 	url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
-	url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])"
+	url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])";
 	url += "&editintro=User:Microchip08/topiccat";
 
 	$('.editlink').attr('href', url);
@@ -64,7 +64,7 @@ function getDesc(name) {
 			return;
 		}
 		if(entry.desc) {
-			$('.desc').text(entry.desc)
+			$('.desc').text(entry.desc);
 			$('.blurb').val(indefiniteArticle($('.desc').text()) + ' '+ $('.desc').text());
 			updatePreview();
 			updateWikitext();
@@ -129,7 +129,7 @@ function updateWikitext() {
 		}
 	}
 	if (sp) {
-		wikitext += "\n|sisterprojects=yes"
+		wikitext += "\n|sisterprojects=yes";
 	}
 	wikitext += "\n}}";
 	$('.wikitext').text(wikitext);
