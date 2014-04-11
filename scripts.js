@@ -17,7 +17,9 @@ $(document).ready(function() {
 	updateWikitext();
 	$('.name').keyup(function(e) {
 		if(e.keyCode==13) { // the enter key
-			getDesc($('.name').val());
+			var name = $('.name').val();
+			// capitalise first letter
+			getDesc(name.charAt(0).toUpperCase() + name.slice(1));
 			updatePreview();
 		} else {
 			$('.desc').text('<press return>');
