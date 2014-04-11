@@ -1,3 +1,11 @@
+/*
+ * This code is awful, are you sure you want to look?
+ *
+ * https://github.com/zuzak/topiccat
+ *
+ * ISC license
+ */
+
 var projects = {
   "enwikibooks": "wikibooks",
   "commonswiki": "commons",
@@ -6,26 +14,30 @@ var projects = {
   "enwikisource": "wikisource",
   "enwiktionary": "wiktionary",
   "enwikiversity": "wikiversity",
-  "enwikivoyage": "wikivoyage"
+  "enwikivoyage": "wikivoyage",
+  "wikidata": "wikidata" // placeholder
 }
 $(document).ready(function() {
+  updateWikitext();
   $('.name').on('input',function() {
     getDesc($('.name').val());
     updatePreview();
   })
   $('.blurb').on('input', updatePreview)
   $('input').on('input', function(){updateWikitext()});
+  $('input').on('change', function(){updateWikitext()});
   $('.img').on('input', function() {
     $('.image').hide().attr('src','https://commons.wikimedia.org/wiki/Special:Filepath/' + $('.img').val()).show();
   })
   $('.img').on('load', function() {
     $('.img').slideDown();
   })
+  $('.force').click(function(){updateWikitext()});
 })
 
 function getDesc(name) {
   $('.desc').text('Working…');
-  $('.editlink').attr('href',"https://en.wikinews.org/w/index.php?action=edit&title=" + encodeURIComponent(name));
+  $('.editlink').attr('href',"https://en.wikinews.org/w/index.php?action=edit&title=Category:" + encodeURIComponent(name));
   $.getJSON('wikidata.php?name=' + encodeURIComponent(name), function (data) {
     var entry = data[Object.keys(data)[0]]; // use the first
     if(!entry) {
@@ -81,10 +93,15 @@ function updateWikitext() {
     var img = $('.img').val();
     wikitext += "\n|caption=" + img.substr(img.indexOf(':')+1);
   }
+  var sp = false;
   for (var key in projects) {
     if($('.' + projects[key] + ' input').is(':checked')) {
       wikitext += "\n|" + projects[key] + "={{PAGENAME}}"
+      sp = true;
     }
+  }
+  if (sp) {
+    wikitext += "\n|sisterprojects=yes"
   }
   wikitext += "\n}}";
   $('.wikitext').text(wikitext);

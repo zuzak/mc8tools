@@ -8,7 +8,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <span class="hatnote">This would be cooler if OAuth worked properly.</span>
+  <noscript class="hatnote">You'll need JavaScript.</noscript>
   <h1>Topic cat tool</h1>
   <!-- 
   <p>
@@ -111,6 +111,7 @@
 
   -->
   <pre class="wikitext"></pre>
+  <a class="force" href="#">Force update</a>
   <a class="editlink" href="https://en.wikinews.org/w/index.php?action=edit&title=Category:">Open edit window</a>
   <p class="footer">
     Created by <a href="https://en.wikinews.org/wiki/User:Microchip08">Microchip08</a>

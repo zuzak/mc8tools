@@ -6,7 +6,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <span class="hatnote">Step one of four</span>
+  <a class="hatnote" href="main.php">Click here to skip to the working bit.</a>
   <h1>Topic cat tool</h1>
   <?php if ( isset( $flash ) ) {
     echo '<p class="flash">' . $flash . '</p>';
