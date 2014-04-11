@@ -14,12 +14,18 @@ var projects = { // list of internal names mapped to projects
   "wikidata": "wikidata" // placeholder
 };
 $(document).ready(function() {
+  	if (window.location.hash) {
+		var nam = window.location.hash.replace(/_/g,' ').substring(1);
+		$('.name').val(nam);
+		getDesc(nam);
+	}
 	updateWikitext();
 	$('.name').keyup(function(e) {
 		if(e.keyCode==13) { // the enter key
 			var name = $('.name').val();
 			// capitalise first letter
 			getDesc(name.charAt(0).toUpperCase() + name.slice(1));
+			window.location.hash = $('.name').val().replace(/ /g,'_');
 			updatePreview();
 		} else {
 			$('.desc').text('<press return>');
