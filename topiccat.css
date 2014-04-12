@@ -48,7 +48,7 @@
   margin:0.2em;
 }
 form {
-  width:450px;
+  width:500px;
   margin:auto;
   display:block;
   margin-bottom:2em;
@@ -63,7 +63,7 @@ form {
 }
 
 .projects ul {
-  width:100px;
+  width:115px;
   float:left;
 }
 .projects ul li input {
@@ -84,6 +84,13 @@ form {
   color:#a7d7f9;
   font-size:80%;
 }
+.editlink {
+   float:right;
+   font-weight:bold;
+   margin-top:-0.2em;
+   font-size:1.5em;
+}
+
 .wikitext {
  white-space:pre-wrap;
  overflow:hidden;
@@ -93,4 +100,13 @@ form {
  border-radius:3px;
  clear:both;
  font-family:monospace;
+}
+.ext {
+  right:25px;
+  height:16px;
+  width:16px;
+  display:inline-block;
+  color:inherit;
+  position:relative;
+  text-decoration:none;
 }

@@ -98,6 +98,7 @@ function getDesc(name) {
 			if(projects[project]) {
 				$('.' + projects[project] + ' input').prop('checked', 'true');
 				$('.' + projects[project] + ' input').attr('data-article', entry.sites[project]);
+				$('.'+projects[project]+' a').attr('href',urls[projects[project]] + entry.sites[project]);
 			}
 		}
 		if(entry.image) {
@@ -148,7 +149,8 @@ function updateWikitext() {
 			} else {
 				var art = article.replace($('.name').val(),'{{PAGENAME}}');
 			}
-			wikitext += '\n|' + projects[key] + '=' + '<a href="' + urls[projects[key]] + article + '">' + art + '</a>';
+			//wikitext += '\n|' + projects[key] + '=' + '<a href="' + urls[projects[key]] + article + '">' + art + '</a>';
+			wikitext += '\n|' + projects[key] + '=' + art;
 		}
 	}
 	if (sp) {
