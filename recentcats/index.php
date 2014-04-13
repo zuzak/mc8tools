@@ -60,7 +60,7 @@ foreach ( array_reverse( $cats ) as $title => $namespaces ) {
 	if( in_array( 14, $namespaces ) ) {
 		$title = str_replace( '_', ' ', $title );
 		echo "\t\t<tr>\n\t\t\t<td>\n\t\t\t\t";
-		echo '<a href="https://en.wikinews.org/wiki/Category:'.$title.'">Category:'.$title.'</a>\n';
+		echo '<a href="https://en.wikinews.org/wiki/Category:'.$title.'">Category:'.$title."</a>\n";
 		echo "\t\t\t</td>\n\t\t\t";
 		if ( in_array( 0, $namespaces ) ) {
 			echo "<td>";
@@ -68,7 +68,7 @@ foreach ( array_reverse( $cats ) as $title => $namespaces ) {
 			echo '<td class="new">';
 		}
 		echo "\n\t\t\t\t";
-		echo '<a href="https://en.wikinews.org/wiki/'.$title.'">'.$title.'</a>\n";
+		echo '<a href="https://en.wikinews.org/wiki/'.$title.'">'.$title."</a>\n";
 		echo "\n\t\t\t</td>\n\t\t</tr>\n";
 	}
 }
