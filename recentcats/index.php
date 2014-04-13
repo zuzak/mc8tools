@@ -54,9 +54,6 @@ $db->close();
 			<th>
 				Mainspace
 			</th>
-			<th>
-				Protection
-			</th>
 		</tr>
 <?php
 foreach ( $cats as $title => $namespaces ) {
