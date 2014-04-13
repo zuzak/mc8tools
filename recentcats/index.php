@@ -4,7 +4,7 @@ $select = array(
 );
 
 $query = 'SELECT DISTINCT ' . implode( ',', $select ) . ' FROM recentchanges ';
-$query .= 'WHERE rc_namespace = 14 OR rc_namespace = 0 AND rc_new = 1';
+$query .= 'WHERE (rc_namespace = 14 AND rc_new = 1) OR rc_namespace = 0';
 
 $credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
