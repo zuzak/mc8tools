@@ -190,3 +190,10 @@ p {
 .poweredby:hover {
   background-color:yellow;
 }
+.small {
+  font-size:70%;
+  color:gray;
+  line-height:1em;
+  text-align:justify;
+  width:70%;
+}
