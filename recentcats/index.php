@@ -58,6 +58,7 @@ $db->close();
 <?php
 foreach ( $cats as $title => $namespaces ) {
 	if( in_array( 14, $namespaces ) ) {
+		$title = str_replace( '_', ' ', $title );
 		echo "\t\t<tr>\n\t\t\t<td>\n\t\t\t\t$title\n";
 		echo "\t\t\t</td>\n\t\t\t";
 		if ( in_array( 0, $namespaces ) ) {
