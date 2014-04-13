@@ -1,6 +1,4 @@
 <?php
-ini_set('error_reporting', E_ALL);
-
 $select = array(
 	'rc_namespace', 'rc_title'
 );
@@ -8,7 +6,7 @@ $select = array(
 $query = 'SELECT DISTINCT ' . implode( ',', $select ) . ' FROM recentchanges ';
 $query .= 'WHERE rc_namespace = 14 OR rc_namespace = 0 AND rc_new = 1';
 
-$credentials = parse_ini_file('../../../replica.my.cnf');
+$credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
 	$errmsg = 'Unable to access database credentials.';
 	require '../error.php';
@@ -24,7 +22,6 @@ $cats = array();
 if ( $result = $db->query( $query ) ) {
 	echo '<table>';
 	while ( $row = $result->fetch_assoc() ) {
-		var_dump($row);
 		if ( !isset($cats[$row['rc_title']]) ) {
 			$cats[$row['rc_title']] = array( $row['rc_namespace'] );
 		} else {
