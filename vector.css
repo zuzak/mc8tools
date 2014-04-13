@@ -110,14 +110,16 @@ font-weight: bold;
   margin:auto;
   text-decoration:none;
 }
-.textbox {
-  border:1px solid #ccc;
-  color:#252525;
+.textbox{
   width:400px;
   font-size:140%;
   padding:0.5em;
   display:block;
   margin-bottom:0;
+}
+.textbox, .tb {
+  border:1px solid #ccc;
+  color:#252525;
 }
 input:focus {
   border-color: gray;
@@ -172,7 +174,6 @@ p {
 .hatnote {
   float:right;
   font-size:80%;
-  text-transform:uppercase;
   color:gray;
   margin-top:1em;
   margin-left:1em;
@@ -198,9 +199,13 @@ p {
   width:70%;
 }
 a {
-	color: #0645AD;
-	text-decoration: none;
+  color: #0645AD;
+  text-decoration: none;
 }
 a:hover, a:focus {
-	text-decoration: underline;
+  text-decoration: underline;
+}
+li {
+  list-style-type: disc;
+  list-style-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANAQMAAABb8jbLAAAABlBMVEX///8AUow5QSOjAAAAAXRSTlMAQObYZgAAABNJREFUCB1jYEABBQw/wLCAgQEAGpIDyT0IVcsAAAAASUVORK5CYII=');
 }

@@ -14,7 +14,7 @@
 	</p>
 	<p>
 		You may wish to attempt your request again. If you continue having problems,
-		contact <a href="https://meta.wikimedia.org/wiki/User talk:Microchip08">Microchip08</a>,
+		contact <a href="https://meta.wikimedia.org/w/index.php?title=User_talk:Microchip08&action=edit&section=new">Microchip08</a>,
 		or open an <a href="https://github.com/zuzak/mc8tools/issues">issue on Github</a>.
 	</p>
 </body>
