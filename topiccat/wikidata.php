@@ -19,6 +19,7 @@ $url = $wikidata . http_build_query( array(
 
 $curl = curl_init();
 curl_setopt( $curl, CURLOPT_URL, $url );
+curl_setopt( $curl, CURLOPT_USERAGENT, 'Topiccat/1.1 https://tools.wmflabs.org/mc8/topiccat' );
 curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
 $json = curl_exec( $curl );
 curl_close( $curl );

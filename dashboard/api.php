@@ -14,6 +14,7 @@ foreach ( $cats as $category ) {
 	$ch = curl_init();
 	curl_setopt( $ch, CURLOPT_URL, $endpoint . 'Category:' . str_replace( '-', '_', $category ) );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+	curl_setopt( $ch, CURLOPT_USERAGENT, 'WikinewsDashboard/1.0 https://tools.wmflabs.org/mc8/dashboard' );
 
 	$json = curl_exec( $ch );
 
