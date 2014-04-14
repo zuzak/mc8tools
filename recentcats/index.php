@@ -3,22 +3,38 @@ $select = array(
 	'rc_namespace', 'rc_title'
 );
 
-$query = 'SELECT DISTINCT ' . implode( ',', $select ) . ' FROM recentchanges ';
-$query .= 'WHERE rc_namespace = 14 AND rc_new = 1';
+/**
+ * Database username/password is stored in a configuration
+ * file in ~/replica.my.cnf, so we need to access it
+ */
 
 $credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
 	$errmsg = 'Unable to access database credentials.';
-	require '../error.php';
+	require '../error.php'; /* this just renders $errmsg nicely, and dies */
 }
+
 if ( isset( $_GET['project'] ) ) {
 	$project = $_GET['project'];
 } else {
 	$project = 'enwikinews';
-}	
+}
+
+/**
+ * Now need to build the query itself
+ * We use DISTINCT because we only want one of each page
+ * rc_new is set to 1 when a new page is created
+ * NS 14 is equivalent to Category:
+ */
+$query = 'SELECT DISTINCT ' . implode( ',', $select ) . ' FROM recentchanges ';
+$query .= 'WHERE rc_namespace = 14 AND rc_new = 1';
+$select = array(
+	'rc_namespace', 'rc_title'
+);
+
 $db = new mysqli( "$project.labsdb", $credentials['user'], $credentials['password'], $project.'_p' );
 if ($db->connect_error) {
-	if ( $db->connect_errno == 2005) {
+	if ( $db->connect_errno == 2005) { /* "not a valid database" */
 		$errmsg = "`$project' is not a valid project identifier.\nExamples: enwiki, dewikiquote, commonswiki";
 	} else {
 		$errmsg = $db->connect_error;
@@ -55,17 +71,28 @@ $db->close();
 	</form>
 	<h1>Special:NewCategories</h1>
 	<p>
-		The following is a list of newly created categories on <?php echo $project; ?>.
+		The following is a list of newly created categories on <strong><?php echo $project; ?></strong>.
 	</p>
-	<ul>
-<?php
+	<ul><?php
+
 foreach ( array_reverse( $cats ) as $title => $namespaces ) {
 	if ( substr( $project, -4) == 'wiki') {
-		$project .= 'pedia';
+		$project .= 'pedia'; /* most (all?) wikimedia.org ones redirect from wikipedia.org */
 	}
-	$url = 'https://' . str_replace( 'wiki', '.wiki', $project ) . ".org/wiki/Category:$title";
+	$url = 'https://' . str_replace( 'wiki', '.wiki', $project ) . ".org";
 	$title = str_replace( '_', ' ', $title );
-	echo "\t\t<li>\n\t\t\t<a href=\"$url\">$title</a>\n\t\t</li>";
+	echo "\n\t\t<li>\n\t\t\t<a href=\"$url/wiki/Category:$title\">$title</a>";
+	if ( isset( $_GET['links'] ) ) {
+		echo "\n\t\t\t<small>(";
+		$actions = array( 'edit', 'protect', 'delete', 'watch' );
+		foreach ( $actions as $action ) {
+			echo "\n\t\t\t\t<a href=\"$url/w/index.php?title=Category:$title&amp;action=$action\">$action</a>";
+		}
+		echo "\n\t\t\t\t<a href=\"../topiccat/#$title\">tc</a>";
+		echo "\n\t\t\t\t/ <a href=\"$url/wiki/$title\">ns:0</a>";
+		echo "\n\t\t\t)</small>";
+	}
+	echo "\n\t\t</li>";
 }
 ?>
 	</table>
