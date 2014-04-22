@@ -67,12 +67,6 @@ $(document).ready(function() {
 function getDesc(name) {
 	$('.desc').text('Working…');
 
-	var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
-	url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
-	url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])";
-	url += "&editintro=User:Microchip08/topiccat";
-
-	$('.editlink').attr('href', url);
 
 	$.getJSON('wikidata.php?name=' + encodeURIComponent(name), function (data) {
 		var key = Object.keys(data)[0]; // use the first
@@ -91,7 +85,7 @@ function getDesc(name) {
       		$('.desc').html('[The Wikidata entry for ' + name + ' <a href="https://www.wikidata.org/wiki/'+Object.keys(data)[0]+'">needs a description</a>]');
 			$('.blurb').val('');
 		}
-    	$('input').prop('checked', false);
+    		$('input').prop('checked', false);
 		clearData();
 		entry.sites["wikidata"] = key; // we want a wikidata link, but it will never be returned by the api
 		for (project in entry.sites) {
@@ -110,6 +104,11 @@ function getDesc(name) {
 			$('.image').slideUp();
 		}
 		updateWikitext();
+		var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
+		url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
+		url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])";
+		url += "&editintro=User:Microchip08/topiccat";
+		$('.editlink').attr('href', url);
 	}).error(function() {
 		$('.desc').text('[Nothing found.]');
 		$('.wikidatalink').text('');

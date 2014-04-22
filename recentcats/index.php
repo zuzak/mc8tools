@@ -1,4 +1,5 @@
 <?php
+require_once '../shared.php';
 $select = array(
 	'rc_namespace', 'rc_title'
 );
@@ -10,7 +11,7 @@ $select = array(
 
 $credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
-	$errmsg = 'Unable to access database credentials.';
+	$errmsg = $I18N->msg('db-nocredentials');
 	require '../error.php'; /* this just renders $errmsg nicely, and dies */
 }
 
@@ -35,9 +36,9 @@ $select = array(
 $db = new mysqli( "$project.labsdb", $credentials['user'], $credentials['password'], $project.'_p' );
 if ($db->connect_error) {
 	if ( $db->connect_errno == 2005) { /* "not a valid database" */
-		$errmsg = "`$project' is not a valid project identifier.\nExamples: enwiki, dewikiquote, commonswiki";
+		$errmsg = $I18N->msg('db-nodatabase', array('variables'=>array($project)));
 	} else {
-		$errmsg = $db->connect_error;
+		$errmsg = $I18N->msg('db-error', array('variables'=>array($db->connect_error)));
 	}
 	require '../error.php';
 }
@@ -60,18 +61,18 @@ $db->close();
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title>Recent Categories</title>
+	<title><?php echo $I18N->msg('recentcats');?></title>
 	<meta charset="utf-8">
 	<link href="../vector.css" rel="stylesheet">
 	<style>.new, .new a { color: #CC2200; }</style>
 </head>
 <body>
 	<form class="hatnote" method="get" action="">
-		<input type="text"  class="tb" name="project" placeholder="Database Name" val="enwikinews"/>
+		<input type="text"  class="tb" name="project" placeholder="<?php echo $I18N->msg('db-name');?>" val="enwikinews"/>
 	</form>
-	<h1>Special:NewCategories</h1>
+	<h1><?php echo $I18N->msg('recentcats');?></h1>
 	<p>
-		The following is a list of newly created categories on <strong><?php echo $project; ?></strong>.
+		<?php echo $I18N->msg('recentcats-intro', array('variables'=>array($project))); ?>
 	</p>
 	<ul><?php
 
@@ -82,16 +83,6 @@ foreach ( array_reverse( $cats ) as $title => $namespaces ) {
 	$url = 'https://' . str_replace( 'wiki', '.wiki', $project ) . ".org";
 	$title = str_replace( '_', ' ', $title );
 	echo "\n\t\t<li>\n\t\t\t<a href=\"$url/wiki/Category:$title\">$title</a>";
-	if ( isset( $_GET['links'] ) ) {
-		echo "\n\t\t\t<small>(";
-		$actions = array( 'edit', 'protect', 'delete', 'watch' );
-		foreach ( $actions as $action ) {
-			echo "\n\t\t\t\t<a href=\"$url/w/index.php?title=Category:$title&amp;action=$action\">$action</a>";
-		}
-		echo "\n\t\t\t\t<a href=\"../topiccat/#$title\">tc</a>";
-		echo "\n\t\t\t\t/ <a href=\"$url/wiki/$title\">ns:0</a>";
-		echo "\n\t\t\t)</small>";
-	}
 	echo "\n\t\t</li>";
 }
 ?>

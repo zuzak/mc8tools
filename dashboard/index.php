@@ -1,3 +1,4 @@
+<?php require '../shared.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +6,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="wikinews.js"></script><!-- this is minified -->
+    <script src="wikinews.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
   </head>
@@ -13,30 +14,31 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <h3 class="text-primary"><span>Developing</span><span class="pull-right dev-arrow">&rarr;</span></h3>
+          <h3 class="text-primary"><span><?php echo $I18N->msg('dashboard-developing');?></span><span class="pull-right dev-arrow">&rarr;</span></h3>
           <ul class="list-group developing"></ul>
         </div>
         <div class="col-md-4">
           <div class="reviews">
-            <h3 class="text-warning"><span>Pending Review</span><span class="pull-right rev-arrow">&rarr;</span></h3>
+            <h3 class="text-warning"><span><?php echo $I18N->msg('dashboard-warning');?>/span><span class="pull-right rev-arrow">&rarr;</span></h3>
             <ul class="list-group review"></ul>
             <div class="underreviews">
-              <h3 class="text-info"><span>Under Review</span><span class="pull-right prog-arrow">&rarr;</span></h3>
+              <h3 class="text-info"><span><?php echo $I18N->msg('dashboard-underreview');?></span><span class="pull-right prog-arrow">&rarr;</span></h3>
               <ul class="list-group under-review"></ul>
             </div>
           </div>
           <div class="disputes">
-            <h3 class="text-danger"><span>Disputed</span><small class="pull-right dis-arrow">(No articles to review)</small></h3>
+            <h3 class="text-danger"><span><?php echo $I18N->msg('dashboard-disputed');?></span><small class="pull-right dis-arrow"><?php echo $I18N->msg('dashboard-pendingreview-none');?></small></h3>
             <ul class="list-group disputed"></ul>
           </div>
         </div>
         <div class="col-md-4">
-          <h3 class="text-success"><span>Published</span><span class="pub-arrow"></span></h3>
+          <h3 class="text-success"><span><?php echo $I18N->msg('dashboard-published');?></span><span class="pub-arrow"></span></h3>
           <ul class="list-group published"></ul>
         </div>
       </div>
       <footer>
-        <noscript><span>Enable JavaScript to get started ·</span></noscript><span><a href="https://en.wikinews.org">Wikinews</a><span>&nbsp;updates automatically every thirty seconds</span></span>
+        <noscript><span><?php echo $I18N->msg('dashboard-noscript'); ?>·</span></noscript><span><?php echo $I18N->msg('dashboard-updatenote', array(
+		'variables' => array('//en.wikinews.org',30)));?></span></span>
       </footer>
     </div>
   </body>

@@ -30,7 +30,7 @@ function upd() {
 function a(section, data) {
   $.each(data[section], function (datum) {
     if(data[section].length == 0) {
-      $('ul.' + section).append('<li class="disabled list-group-item">Nothing here!</li>')
+      //$('ul.' + section).append('<li class="disabled list-group-item">Nothing here!</li>')
     } else if ($('ul.' + section + ' li:contains(' + data[section][datum] +')').length == 0) {
       var li = '<li class="list-group-item"><a href="https://en.wikinews.org/wiki/'
       li += data[section][datum] + '">' + data[section][datum] + '</a></li>'
@@ -42,8 +42,8 @@ function a(section, data) {
       $(li).slideUp()
     }
   })
-  var li = '<li><a href="https://en.wikinews.org/wiki/Category:' + section + '">'
+  /*var li = '<li><a href="https://en.wikinews.org/wiki/Category:' + section + '">'
   li += data[section].length + ' ' + section + ' articles</a></li>'
-  $('ul.footer').append(li)
+  $('ul.footer').append(li)*/
 }
 

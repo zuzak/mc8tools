@@ -1,21 +1,24 @@
+<?php require_once('shared.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New Categories</title>
+	<title><?php echo $I18N->msg('error-heading');?></title>
 	<meta charset="utf-8">
-	<link href="../vector.css" rel="stylesheet">
+	<link href="vector.css" rel="stylesheet">
 	<style>.new, .new a { color: #CC2200; }</style>
 </head>
 <body>
-	<h1>Error encountered</h1>
+	<h1><?php echo $I18N->msg('error-heading');?></h1>
+	<p>
+		<?php echo $I18N->msg('error-intro');?>
+	</p>
 	<?php if( isset( $errmsg ) ) echo "<pre>$errmsg</pre>"; ?>
 	<p>
-		A problem was encountered whilst processing that last directive.
-	</p>
-	<p>
-		You may wish to attempt your request again. If you continue having problems,
-		contact <a href="https://meta.wikimedia.org/w/index.php?title=User_talk:Microchip08&action=edit&section=new">Microchip08</a>,
-		or open an <a href="https://github.com/zuzak/mc8tools/issues">issue on Github</a>.
+		<?php echo $I18N->msg('error-contact', array('variables' => array(
+			'https://meta.wikimedia.org/w/index.php?title=User_talk:Microchip08&action=edit&section=new',
+			'Microchip08',
+			'"https://github.com/zuzak/mc8tools/issues'
+		))); ?>
 	</p>
 </body>
 </html>

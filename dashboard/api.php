@@ -18,10 +18,18 @@ foreach ( $cats as $category ) {
 
 	$json = curl_exec( $ch );
 
-	if (!$json) {
+	curl_close( $ch );
+
+	if ( !$json ) {
+		//header( 'HTTP/1.1 500 Internal Server Error' );
 		die( '{"error": "'.curl_error( $ch ) . '"}' );
 	}
 	$data = json_decode( $json );
+	if ( !is_object( $data ) ) {
+		//header( 'HTTP/1.1 500 Internal Server Error' );
+		var_dump( $data );
+		die( '{"error": "unable to decode upstream json ' . json_last_error() . '"}' );
+	}
 	$data = $data->query;
 
 	$output[$category] = array();
