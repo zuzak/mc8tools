@@ -1,4 +1,22 @@
 <?php
+/**
+ * mc8.i18n.php
+ *
+ * Internationalization files for mc8tools
+ * https://tools.wmflabs.org/mc8
+ *
+ * A user can select an ISO 639-2 (or, if that doesn't exist, an ISO 639-3 code)
+ * by passing the ?use_lang=xx GET parameter to a URI.
+ *
+ * They can also select a global language by changing their cookie at
+ * https://tools.wmflabs.org/intuition/
+ *
+ * If a message is not available in the selected language,
+ * it will fall back to English (en). If English is not available,
+ * it will output the message key.
+ *
+ * @file
+ */
 $messages['en'] = array(
 	'crossredirs' => 'Cross-namespace redirects',
 	'crossredirs-desc' => '<a href="$1">Cross namespace redirects</a>: a list of mainspace to userspace redirects on an arbitrary Wikimedia wiki.',
