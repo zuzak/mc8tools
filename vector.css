@@ -171,7 +171,7 @@ p {
   text-align:center;
   border-top:1px solid #A7D7F9;
 }
-.hatnote {
+.int-dashboardbacklink, .hatnote {
   float:right;
   font-size:80%;
   color:gray;
@@ -208,4 +208,18 @@ a:hover, a:focus {
 li {
   list-style-type: disc;
   list-style-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANAQMAAABb8jbLAAAABlBMVEX///8AUow5QSOjAAAAAXRSTlMAQObYZgAAABNJREFUCB1jYEABBQw/wLCAgQEAGpIDyT0IVcsAAAAASUVORK5CYII=');
+}
+.lang:hover {
+  outline: 6px solid #FFA500;
+  background-color: #FFA500;
+  color: #0059ff;
+}
+.lang span {
+  display:none;
+}
+.lang:hover span {
+  display:inherit;
+  float:left;
+  padding-right:1em;
+  padding-right:1em;
 }

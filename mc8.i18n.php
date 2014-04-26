@@ -50,6 +50,7 @@ $messages['qqq'] = array(
 	'db-error' => 'The message displayed when there is an error connecting to the database. \n\nParameters:\n* $1: The error message.',
 	'db-name' => 'The placeholder for the text box prompting the user to select a database name (such as <tt>commonswiki</tt>).',
 	'db-nocredentials' => 'The error message displayed when the tool is unable to access its own credentials in order to connect to the database.',
+	'db-nodatabase' => 'The error message displayed when an invalid database name is chosen, giving examples of what a valid name should be.\n\nParameters:\n* $1 the database name used.\n\nText is parsed in a <tt><nowiki><pre></nowiki></tt> block, so whitespace is preserved.',
 	'db-queryfail' => 'The error message displayed when the tool encounters an error processing a database query.',
 	'error-contact' => 'The message displayed at the footer of the error page, telling the user to try again or alternatively contact the tool maintainer.\n\nParameters:\n* $1 The URL of the user page of the tool maintainer.\n* $2 The user name of the tool maintainer.\n* $3: The issues page of the tool, on Github.',
 	'error-heading' => 'The heading of the error page.',

@@ -7,7 +7,7 @@ require '../shared.php';
 
 $credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
-	$errmsg = $I18N->msg( 'db-connectfail' );
+	$errmsg = _( 'db-connectfail' );
 	require '../error.php'; /* this just renders $errmsg nicely, and dies */
 }
 
@@ -28,21 +28,21 @@ SQL;
 $db = new mysqli( "$project.labsdb", $credentials['user'], $credentials['password'], $project.'_p' );
 if ($db->connect_error) {
 	if ( $db->connect_errno == 2005) { /* "not a valid database" */
-		$I18N->msg( 'db-nodatabase', array( 'variables' => array( $project ) )  );	
+		_( 'db-nodatabase', array( 'variables' => array( $project ) )  );
 	} else {
-		$errmsg = $I18N->( 'db-error', array( 'variables' => array( $db->connect_error ) ) );
+		$errmsg = _( 'db-error', array( 'variables' => array( $db->connect_error ) ) );
 	}
 	require '../error.php';
 }
 
 if (!$result = $db->query( $query ))  {
-	$errmsg = $I18N->msg( 'db-queryfail' );
+	$errmsg = _( 'db-queryfail' );
 	require '../error.php';
 }
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $I18N->msg( 'crossredirs' ); ?></title>
+	<title><?php _e( 'crossredirs' ); ?></title>
 	<meta charset="utf-8">
 	<link href="../vector.css" rel="stylesheet">
 	<style>.new, .new a { color: #CC2200; }</style>
@@ -56,16 +56,16 @@ if (!$result = $db->query( $query ))  {
 </head>
 <body>
 	<form class="hatnote" method="get" action="">
-		<input type="text"  class="tb" name="project" placeholder="<?php echo $I18N->msg('db-name');?>"/>
+		<input type="text"  class="tb" name="project" placeholder="<?php _e('db-name');?>"/>
 	</form>
-	<h1><?php echo $I18N->msg( 'crossredirs' ); ?></h1>
+	<h1><?php _e( 'crossredirs' ); ?></h1>
 	<p>
-		<?php echo $I18N->msg( 'crossredirs-intro', array( 'variables' => array( $result->num_rows, $project ) )  ); ?>
+		<?php _e( 'crossredirs-intro', array( 'parsemag' => true, 'variables' => array( $result->num_rows, $project ) )  ); ?>
 	</p>
 	<table class="wikitable">
 		<tr>
-			<th><?php echo $I18N->msg( 'crossredirs-origin' );?></th>
-			<th><?php echo $I18N->msg( 'crossredirs-destination' );?></th>
+			<th><?php _e( 'crossredirs-origin' );?></th>
+			<th><?php _e( 'crossredirs-destination' );?></th>
 		</tr>
 <?php
 if ( substr( $project, -4 ) == 'wiki' ) {

@@ -106,7 +106,7 @@ function getDesc(name) {
 		updateWikitext();
 		var url = "https://en.wikinews.org/w/index.php?action=edit&title=Category:"+encodeURIComponent(name);
 		url += "&preload=User:Microchip08/placeholder&preloadparams%5b%5d="+encodeURI($('.wikitext').text());
-		url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[User:Microchip08/topiccat|assisted]])";
+		url += "&summary=Adding {{[[Template:Topic cat|topic cat]]}} ([[toollabs:mc8/topiccat%23" +encodeURIComponent(name)+"|assisted]])";
 		url += "&editintro=User:Microchip08/topiccat";
 		$('.editlink').attr('href', url);
 	}).error(function() {

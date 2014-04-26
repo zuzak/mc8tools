@@ -11,7 +11,7 @@ $select = array(
 
 $credentials = parse_ini_file('../../replica.my.cnf');
 if ( !$credentials ) {
-	$errmsg = $I18N->msg('db-nocredentials');
+	$errmsg = _('db-nocredentials');
 	require '../error.php'; /* this just renders $errmsg nicely, and dies */
 }
 
@@ -36,9 +36,9 @@ $select = array(
 $db = new mysqli( "$project.labsdb", $credentials['user'], $credentials['password'], $project.'_p' );
 if ($db->connect_error) {
 	if ( $db->connect_errno == 2005) { /* "not a valid database" */
-		$errmsg = $I18N->msg('db-nodatabase', array('variables'=>array($project)));
+		$errmsg = _('db-nodatabase', array('variables'=>array($project)));
 	} else {
-		$errmsg = $I18N->msg('db-error', array('variables'=>array($db->connect_error)));
+		$errmsg = _('db-error', array('variables'=>array($db->connect_error)));
 	}
 	require '../error.php';
 }
@@ -61,18 +61,18 @@ $db->close();
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $I18N->msg('recentcats');?></title>
+	<title><?php _e('recentcats');?></title>
 	<meta charset="utf-8">
 	<link href="../vector.css" rel="stylesheet">
 	<style>.new, .new a { color: #CC2200; }</style>
 </head>
 <body>
 	<form class="hatnote" method="get" action="">
-		<input type="text"  class="tb" name="project" placeholder="<?php echo $I18N->msg('db-name');?>" val="enwikinews"/>
+		<input type="text"  class="tb" name="project" placeholder="<?php _e('db-name');?>" val="enwikinews"/>
 	</form>
-	<h1><?php echo $I18N->msg('recentcats');?></h1>
+	<h1><?php _e('recentcats');?></h1>
 	<p>
-		<?php echo $I18N->msg('recentcats-intro', array('variables'=>array($project))); ?>
+		<?php _e('recentcats-intro', array('variables'=>array($project))); ?>
 	</p>
 	<ul><?php
 
