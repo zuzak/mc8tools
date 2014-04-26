@@ -3,7 +3,7 @@ $messages['en'] = array(
 	'crossredirs' => 'Cross-namespace redirects',
 	'crossredirs-desc' => '<a href="$1">Cross namespace redirects</a>: a list of mainspace to userspace redirects on an arbitrary Wikimedia wiki.',
 	'crossredirs-destination' => 'Destination',
-	'crossredirs-intro' => 'The following is a [http://example.com foo] list of $1 mainspace &rarr; userspace {{PLURAL:$1|redirect|redirects}} on $2.',
+	'crossredirs-intro' => 'The following is a list of $1 mainspace &rarr; userspace {{PLURAL:$1|redirect|redirects}} on $2.',
 	'crossredirs-origin' => 'Origin',
 	'dashboard-desc' => '<a href="$1">Dashboard</a>: the current state of English Wikinews at a glance.',
 	'dashboard-developing' => 'Developing',
