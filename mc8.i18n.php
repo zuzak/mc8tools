@@ -31,7 +31,7 @@ $messages['en'] = array(
 	'dashboard-pendingreview-none' => '(No articles to review)',
 	'dashboard-published' => 'Published',
 	'dashboard-underreview' => 'Under Review',
-	'dashboard-updatenote' => '<a href="$">Wikinews</a> updates automatically every $2 seconds.</a>',
+	'dashboard-updatenote' => '<a href="$1">Wikinews</a> updates automatically every $2 seconds.</a>',
 	'db-error' => "There was a problem when connecting to the database. The error given was \"$1\".",
 	'db-name' => 'Database name',
 	'db-nocredentials' => 'Unable to get database credentials.',
