@@ -76,3 +76,8 @@ input:focus {
 .header {
 	display:table-row !important;
 }
+.top {
+	float:right;
+	font-size:0.8em;
+	margin-right:0.2em;
+}

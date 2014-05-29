@@ -69,11 +69,21 @@ function getContribs( count, project, user, from ) {
 }
 
 function writeTable( entry, project ) {
-	console.log('gettemp',entry);
+	console.log(entry);
 	if( !$('.otrs tr[data-id="' + entry.pageid + '"]' ).text() ) {
 		var html = '<tr data-id="' + entry.pageid + '"><td><a href="';
-		html += project.data.url + '/wiki/' + entry.title + '">' + entry.title;
-		html += '</a></td><td class="otrs-loading">Loading</td></tr>';
+		html += project.data.url + '/wiki/' + entry.title + '"';
+		if ( entry.comment ) {
+			html  += ' title="' + entry.comment + '"';
+		}
+		html += '>' + entry.title;
+		html += '</a>';
+
+		if ( typeof entry.top !== 'undefined' ) {
+			html += '<span class="top">(top)</span>';
+		}
+
+		html += '</td><td class="otrs-loading">Loading</td></tr>';
 		$('.otrs').append(html);
 
 		getTemplates( entry, project );
