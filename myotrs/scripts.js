@@ -24,9 +24,14 @@ function getWiki( project ) {
 		jsonp: 'callback',
 		success: function ( data ) {
 			for ( var key in data ) break;
-			getContribs( 0, data[key], $( '.username' ).val() );
-			if ( data[key].is_closed ) {
-				$('.notes').html( '<strong>Warning:</strong> wiki is closed.' );
+			if ( data[key].match ) {
+				getContribs( 0, data[key], $( '.username' ).val() );
+				if ( data[key].is_closed ) {
+					$('.notes').html( '<strong>Warning:</strong> wiki is closed.' );
+				}
+			} else {
+				setStatus( 'No project found matching "' + data[key].search +'". Retry?' );
+				return;
 			}
 		},
 		error: function ( data ) {
