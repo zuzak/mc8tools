@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>[myotrs]</title>
+	<meta charset="utf-8">
+	<link href="vector.css" rel="stylesheet">
+	<link href="styles.css" rel="stylesheet">
+	<script src="jquery-1.11.1.min.js"></script>
+	<script src="scripts.js"></script>
+</head>
+<body>
+<div class="info hatnote"></div>
+	<h1>myotrs</h1>
+	<p class="notes">Use this tool to see the OTRS tags of a user.</p>
+	<div class="topmatter">
+		<label for="username">Username</label>
+		<input class="tb username" id="username" name="username" type="text" placeholder="Jimbo Wales">
+		<label for="project">Project</label>
+		<input class="project tb" id="project" name="project" type="text" placeholder="enwiki">
+		<label for="limit">Limit</label>
+		<input class="limit tb" id="limit" name="limit" type="text" value="1000">
+		<input type="submit" value="Go" class="good button go" />
+	</div>
+	<table class="wikitable otrs">
+		<tr class="header"><th>Filename</th><th>Status</th></tr>
+	</table>
+	<a href="." class="progress button retry">Retry</a>
+	<div class="clear">&nbsp;</div>
+</body>
+</html>
