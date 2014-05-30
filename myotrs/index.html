@@ -9,7 +9,7 @@
 	<script src="scripts.js"></script>
 </head>
 <body>
-<div class="info hatnote"></div>
+	<div class="hatnote"><span class="info"></span></div>
 	<h1>myotrs</h1>
 	<p class="notes">Use this tool to see the OTRS tags of a user.</p>
 	<div class="topmatter">
@@ -19,6 +19,8 @@
 		<input class="project tb" id="project" name="project" type="text" placeholder="enwiki">
 		<label for="limit">Limit</label>
 		<input class="limit tb" id="limit" name="limit" type="text" value="1000">
+		<label for="hide">Hide pages with no tags</label>
+		<input type="checkbox" id="hide" class="hide tb" checked="checked">
 		<input type="submit" value="Go" class="good button go" />
 	</div>
 	<table class="wikitable otrs">
