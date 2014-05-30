@@ -1,3 +1,4 @@
+var count = { contribs: 0, templates: 0, max: false};
 $( document ).ready( function () {
 	$( '.go' ).click( function() {
 		setStatus( 'Getting project' );
@@ -10,7 +11,7 @@ $( document ).ready( function () {
 
 function setStatus( text, type ) {
 	type = type ? type : 'info';
-	$( '.' + type ).text( text );
+	$( '.' + type ).html( text );
 	return text;
 }
 
@@ -25,29 +26,40 @@ function getWiki( project ) {
 		success: function ( data ) {
 			for ( var key in data ) break;
 			if ( data[key].match ) {
-				getContribs( 0, data[key], $( '.username' ).val() );
+				var user = $('.username').val();
+				getContribs( data[key], user );
 				if ( data[key].is_closed ) {
 					$('.notes').html( '<strong>Warning:</strong> wiki is closed.' );
+				} else {
+					var html = '<a href="' + data[key].data.url + '/wiki/User:' + user + '">';
+					html += user + '</a> (<a href="' + data[key].data.url + '/wiki/User talk:' + user;
+					html += '">talk</a> &middot; <a href="' + data[key].data.url + '/wiki/Special:Contrib';
+					html += 'utions/' + user + '">contribs</a> &middot; <a href="' + data[key].data.url;
+					html += '/wiki/Special:ListFiles/' + user + '">uploads</a>) has made edits to the following';
+					html += ' file description pages on ' + data[key].data.domain + ':';
+					$('.notes').html( html );
 				}
 			} else {
 				setStatus( 'No project found matching "' + data[key].search +'". Retry?' );
+				$('.notes').text('Please check your spelling of the project name.');
 				return;
 			}
 		},
 		error: function ( data ) {
 			setStatus( 'Invalid project. Retry?' );
+			$('.notes').text('Unable to access wiki lookup.');
 		}
 
 	} );
 }
-function getContribs( count, project, user, from ) {
-	setStatus( count + ' contributions found' );
-	if ( count >= $('.limit').val() ) {
-		setStatus( 'Aborting due to limit at ' + count + ' contributions' );
+function getContribs(  project, user, from ) {
+	updateCounter();
+	if ( count.contribs >= $('.limit').val() ) {
+		setStatus( 'Aborting due to limit at ' + count.contribs + ' contributions' );
 		return;
 	}
 	var contribsurl = project.data.apiurl + '?action=query&list=usercontribs';
-	contribsurl += '&ucnamespace=6&callback=callback&format=json&ucuser=' + user;
+	contribsurl += '&uclimit=max&ucnamespace=6&callback=callback&format=json&ucuser=' + user;
 	if ( from ) {
 		contribsurl += '&uccontinue=' + from['query-continue'].usercontribs.uccontinue;
 	}
@@ -60,51 +72,56 @@ function getContribs( count, project, user, from ) {
 				setStatus( data.error.info );
 				return;
 			}
-			count += data.query.usercontribs.length;
+			count.contribs += data.query.usercontribs.length;
 			for ( var i = 0; i < data.query.usercontribs.length; i++ ) {
 				writeTable( data.query.usercontribs[i], project );
 			}
 			if ( data['query-continue'] ) {
-				getContribs( count, project, user, data );
+				getContribs( project, user, data );
 			} else {
-				setStatus( 'Done for ' + user + '@' + project.data.wikicode );
+				count.max = true;
 			}
 		}
 	});
 }
 
 function writeTable( entry, project ) {
-	console.log(entry);
-	if( !$('.otrs tr[data-id="' + entry.pageid + '"]' ).text() ) {
-		var html = '<tr data-id="' + entry.pageid + '"><td><a href="';
-		html += project.data.url + '/wiki/' + entry.title + '"';
-		if ( entry.comment ) {
-			html  += ' title="' + entry.comment + '"';
-		}
-		html += '>' + entry.title;
-		html += '</a>';
-
+	if ( $( '.otrs tr[data-id="' + entry.pageid + '"]').text() )  {
 		if ( typeof entry.top !== 'undefined' ) {
-			html += '<span class="top">(top)</span>';
+			$( '.otrs tr[data-id="' + entry.pageid + '"] td:first-child').append('<span class="top">(top)</span>');
 		}
-
-		html += '</td><td class="otrs-loading">Loading</td></tr>';
-		$('.otrs').append(html);
-
-		getTemplates( entry, project );
-
+		return;
 	}
+	var html = '<tr data-id="' + entry.pageid + '"><td><a href="';
+	html += project.data.url + '/wiki/' + entry.title + '"';
+	if ( entry.comment ) {
+		html  += ' title="' + entry.comment + '"';
+	}
+	html += '>' + entry.title;
+	html += '</a>';
+
+	if ( typeof entry.top !== 'undefined' ) {
+		html += '<span class="top">(top)</span>';
+	}
+
+	html += '</td><td class="otrs-loading">Loading</td></tr>';
+	$('.otrs').append(html);
+
+	getTemplates( entry, project );
 }
+
 
 function getTemplates( entry, project ) {
 	var url = project.data.apiurl + '?action=query&titles=' + entry.title;
 	url += '&prop=templates&tltemplates=Template:OTRS_received|Template:';
-	url += 'PermissionOTRS|Template:OTRS_pending&format=json&callback=callback';
+	url += 'PermissionOTRS|template:OTRS_pending&format=json&callback=callback';
 	$.ajax( {
 		url: url,
 		jsonp: 'callback',
 		dataType: 'jsonp',
 		success: function ( data ) {
+			count.templates++;
+			updateCounter();
 			if ( data.error ) {
 				setStatus( data.error.info );
 				return;
@@ -135,10 +152,36 @@ function getTemplates( entry, project ) {
 			$('.otrs tr[data-id="' + entry.pageid + '"] td:last-child' ).addClass( 'otrs-' + result );
 			$('.otrs tr[data-id="' + entry.pageid + '"] td:last-child' ).removeClass( 'otrs-loading' );
 
-			if ( result !== 'none' ) {
+			if ( $( '.hide' ).is( ':checked' ) ) {
+				if ( result !== 'none' ) {
+					$('.otrs tr[data-id="' + entry.pageid + '"]').slideDown();
+				}
+			} else {
 				$('.otrs tr[data-id="' + entry.pageid + '"]').slideDown();
 			}
+
 		}
 	} );
 }
 
+function updateCounter() {
+	var str = '';
+	if ( count.templates === count.contribs ) {
+		if ( count.max ) {
+			str = count.contribs + ' contributions processed';
+		} else {
+			if ( count.contribs >= $('.limit').val() ) {
+				str = 'Limit hit: ' + count.contribs + ' contributions processed';
+			} else {
+				str = '(Waiting for API) Processing ' + count.contribs + ' contributions';
+			}
+		}
+	} else {
+		str = 'Processing ' + count.templates + '/' + count.contribs;
+		if ( !count.max ) {
+			str += '+';
+		}
+		str += ' contributions';
+	}
+	setStatus( str );
+}

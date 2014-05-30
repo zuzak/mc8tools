@@ -1,5 +1,5 @@
 label {
-	width: 100px;
+	width: 250px;
 	font-size:1.4em;
 	display:table;
 	text-align:right;
@@ -58,6 +58,15 @@ input:focus {
 	color:gray;
 	font-weight:lighter;
 }
+.otrs-error, .otrs-mixed {
+	color:red;
+}
+
+.otrs-none {
+	color:darkgray;
+	font-weight:normal;
+	font-size:90%;
+}
 .otrs td:last-child {
 	font-weight:bold;
 	text-align:center;
@@ -80,4 +89,7 @@ input:focus {
 	float:right;
 	font-size:0.8em;
 	margin-right:0.2em;
+}
+.halt {
+	display:none;
 }
