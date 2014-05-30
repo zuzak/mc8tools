@@ -90,6 +90,7 @@ function writeTable( entry, project ) {
 		if ( typeof entry.top !== 'undefined' ) {
 			$( '.otrs tr[data-id="' + entry.pageid + '"] td:first-child').append('<span class="top">(top)</span>');
 		}
+		count.templates++;
 		return;
 	}
 	var html = '<tr data-id="' + entry.pageid + '"><td><a href="';
