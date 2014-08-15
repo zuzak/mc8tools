@@ -1,0 +1,47 @@
+[
+	{
+		"name": "wndash",
+		"title": "Wikinews Dashboard",
+		"description": "Shows the state of English Wikinews at a glance",
+		"url": "https://tools.wmflabs.org/mc8/dashboard/",
+		"keywords": "wikinews, review, categories",
+		"author": "Douglas Gardner",
+		"repository": "https://github.com/zuzak/mc8tools.git"
+	},
+	{
+		"name": "recentcats",
+		"title": "Recent Categories",
+		"description": "A list of recently created categories on an arbitrary Wikimedia wiki",
+		"url": "https://tools.wmflabs.org/mc8/recentcats",
+		"author": "Douglas Gardner",
+		"repository": "https://github.com/zuzak/mc8tools.git",
+		"keywords": "categories"
+	},
+	{
+		"name": "crossredirs",
+		"title": "Cross namespace redirects",
+		"description": "A list of mainspace to userspace redirects on arbitrary Wikimedia wikis",
+		"url": "https://tools.wmflabs.org/mc8/crossredirs",
+		"author": "Douglas Gardner",
+		"repository": "https://github.com/zuzak/mc8tools.git",
+		"keywords": "redirects, userspace"
+	},
+	{
+		"name": "topiccat",
+		"title": "{{Topic cat}} generator",
+		"description": "{{topic cat}} creator for English Wikinews",
+		"url": "https://tools.wmflabs.org/mc8/topiccat",
+		"author": "Douglas Gardner",
+		"repository": "https://github.com/zuzak/mc8tools.git",
+		"keywords": "wikinews, generator, templates"
+	},
+	{
+		"name": "myotrs",
+		"title": "myotrs",
+		"description": "A tool to view the recent OTRS tags of a user",
+		"url": "https://tools.wmflabs.org/mc8/myotrs",
+		"author": "Douglas Gardner",
+		"repository": "https://github.com/zuzak/mc8tools.git",
+		"keywords": "otrs"
+	}
+]
